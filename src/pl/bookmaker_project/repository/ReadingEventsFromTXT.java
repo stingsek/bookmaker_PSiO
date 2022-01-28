@@ -1,4 +1,4 @@
-package pl.bookmaker_project;
+package pl.bookmaker_project.repository;
 
 import pl.bookmaker_project.model.DrawableEvent;
 import pl.bookmaker_project.model.EventToBet;
@@ -10,8 +10,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
 
 public abstract class ReadingEventsFromTXT
 {

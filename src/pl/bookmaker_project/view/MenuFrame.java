@@ -8,15 +8,13 @@ import java.awt.*;
 public class MenuFrame extends JFrame
 {
     private MenuController menuController;
-    private JPanel mainpanel;
-    private MenuPanel menuPanel;
-    //private TicketCreatorPanel ticketCreatorPanel;
+    private final JPanel mainpanel;
+    private final MenuPanel menuPanel;
     private ActualBettingTicketsPanel actualBettingTicketsPanel;
     private PlayedBettingTicketsPanel playedBettingTicketsPanel;
-    private Menu menu;
-    private CardLayout card;
+    private final Menu menu;
+    private final CardLayout card;
 
-    //w polu bedzie controller
 
     public MenuFrame(MenuController menuController)//parametrem bedzie controller
     {
@@ -28,15 +26,10 @@ public class MenuFrame extends JFrame
         this.playedBettingTicketsPanel = new PlayedBettingTicketsPanel(menuController);
         this.mainpanel = new JPanel();
         this.card = new CardLayout();
+
         setUpMenuFrame();
-        setUpListeners();
-
     }
 
-    private void createComponents()
-    {
-
-    }
 
     private void setUpMenuFrame()
     {
@@ -52,6 +45,7 @@ public class MenuFrame extends JFrame
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
+
         this.setSize(1200,700);
         this.setTitle("bookmaker app");
         this.setResizable(true);
@@ -66,24 +60,12 @@ public class MenuFrame extends JFrame
         mainpanel.add(playedBettingTicketsPanel,"Played Tickets Panel");
 
         this.add(mainpanel);
+
         this.setVisible(true);
 
-//Method came from the ItemListener class implementation,
-//contains functionality to process the combo box item selecting
-//        this.setContentPane(ticketCreatorPanel);
-//        this.setContentPane(actualBettingTicketsPanel);
-
-//        this.setContentPane(ticketCreatorPanel);
-//        frameScrollPane.setVisible(true);
         this.setJMenuBar(menu);
 
         this.repaint();
-
-    }
-
-    private void setUpListeners()
-    {
-
 
     }
 
@@ -93,35 +75,39 @@ public class MenuFrame extends JFrame
         return menu;
     }
 
+
     public JPanel getMainpanel()
     {
         return mainpanel;
     }
+
 
     public CardLayout getCard()
     {
         return card;
     }
 
+
     public MenuPanel getMenuPanel()
     {
         return menuPanel;
     }
 
-//    public TicketCreatorPanel getTicketCreatorPanel()
-//    {
-//        return ticketCreatorPanel;
-//    }
 
     public ActualBettingTicketsPanel getActualBettingTicketsPanel()
     {
         return actualBettingTicketsPanel;
     }
 
-    public PlayedBettingTicketsPanel getPlayedBettingTicketsPanel()
+
+    public void setActualBettingTicketsPanel(ActualBettingTicketsPanel actualBettingTicketsPanel)
     {
-        return playedBettingTicketsPanel;
+        this.actualBettingTicketsPanel = actualBettingTicketsPanel;
     }
 
 
+    public void setPlayedBettingTicketsPanel(PlayedBettingTicketsPanel playedBettingTicketsPanel)
+    {
+        this.playedBettingTicketsPanel = playedBettingTicketsPanel;
+    }
 }

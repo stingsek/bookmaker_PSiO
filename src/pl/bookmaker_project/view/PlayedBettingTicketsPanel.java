@@ -4,18 +4,15 @@ import pl.bookmaker_project.controller.MenuController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class PlayedBettingTicketsPanel extends JPanel
 {
     private MenuController menuController;
-    private JButton bOK;
-    private JLabel lPlayedTickets;
-    private PlayedBettingTicketsDisplayer playedBettingTicketsCreator;
-    private JScrollPane actualTicketsScrollPane;
-    private JPanel southPanel;
-    private JTable playedTicketsTable;
+    private final JButton bOK;
+    private final JLabel lPlayedTickets;
+    private final PlayedBettingTicketsDisplayer playedBettingTicketsCreator;
+    private final JScrollPane actualTicketsScrollPane;
+    private final JPanel southPanel;
 
     public PlayedBettingTicketsPanel(MenuController menuController)
     {
@@ -26,9 +23,7 @@ public class PlayedBettingTicketsPanel extends JPanel
         this.lPlayedTickets = new JLabel("Played Betting Tickets: ",SwingConstants.CENTER);
         this.bOK = new JButton("OK");
 
-
         setUpActualBettingTicketsPanel();
-
         setUpListeners();
     }
 
@@ -41,17 +36,21 @@ public class PlayedBettingTicketsPanel extends JPanel
         lPlayedTickets.setFont(new Font("Sans Serif",Font.BOLD,30));
 
         lPlayedTickets.setAlignmentX(CENTER_ALIGNMENT);
+
         this.add(lPlayedTickets,BorderLayout.PAGE_START);
 
         playedBettingTicketsCreator.setAlignmentY(CENTER_ALIGNMENT);
         actualTicketsScrollPane.setViewportView(playedBettingTicketsCreator);
+
         this.add(actualTicketsScrollPane);
 
         southPanel.setLayout(new BoxLayout(southPanel,BoxLayout.X_AXIS));
 
         bOK.setFocusable(false);
         bOK.setFont(new Font("Sans Serif",Font.BOLD,30));
+
         southPanel.add(bOK);
+
         this.add(southPanel);
 
 
@@ -59,12 +58,6 @@ public class PlayedBettingTicketsPanel extends JPanel
 
     private void setUpListeners()
     {
-        bOK.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent click)
-            {
-                menuController.returnToMainMenu();
-            }
-        });
+        bOK.addActionListener(click -> menuController.returnToMainMenu());
     }
 }

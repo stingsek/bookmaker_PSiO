@@ -3,8 +3,7 @@ package pl.bookmaker_project.view;
 import pl.bookmaker_project.controller.MenuController;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class Menu extends JMenuBar
 {
@@ -18,10 +17,10 @@ public class Menu extends JMenuBar
     {
         super();
         this.menuController = menuController;
+
         createComponents();
         setUpMenuBar();
         setUpListeners();
-
 
     }
 
@@ -37,7 +36,6 @@ public class Menu extends JMenuBar
         this.rbBritishOdd = new JRadioButton("British Odd");
         this.rbDecimalOdd = new JRadioButton("Decimal Odd");
         this.bgOdds = new ButtonGroup();
-
 
     }
 
@@ -60,6 +58,7 @@ public class Menu extends JMenuBar
         mOddType.add(rbDecimalOdd);
         mOddType.add(rbBritishOdd);
         mOddType.add(rbAmericanOdd);
+
         rbBritishOdd.setFocusable(false);
         rbAmericanOdd.setFocusable(false);
         rbDecimalOdd.setFocusable(false);
@@ -67,73 +66,33 @@ public class Menu extends JMenuBar
 
     private void setUpListeners()
     {
-        iDisplayBalance.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent click)
-            {
-                menuController.displayBalance();
+        iDisplayBalance.addActionListener(click -> menuController.displayBalance());
 
-            }
-        });
+        iDisplayActual.addActionListener(click -> menuController.displayActualTickets());
 
-        iDisplayActual.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent click)
-            {
-                menuController.displayActualTickets();
-            }
-        });
+        iDisplayPlayed.addActionListener(click -> menuController.displayPlayedTickets());
 
-        iDisplayPlayed.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent click)
-            {
-                menuController.displayPlayedTickets();
-            }
-        });
+        rbDecimalOdd.addActionListener(click -> menuController.changeOdds());
 
-        rbDecimalOdd.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent click)
-            {
-                if(rbDecimalOdd.isSelected())
-                {
-                    System.out.println("Kawa decymalna");
+        rbAmericanOdd.addActionListener(click -> menuController.changeOdds());
 
-                }
+        rbBritishOdd.addActionListener(click -> menuController.changeOdds());
 
+    }
 
-            }
-        });
+    public JRadioButton getRbAmericanOdd()
+    {
+        return rbAmericanOdd;
+    }
 
-        rbAmericanOdd.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent click)
-            {
-                if(rbAmericanOdd.isSelected())
-                {
-                    System.out.println("kawa amerykanska");
-                }
+    public JRadioButton getRbBritishOdd()
+    {
+        return rbBritishOdd;
+    }
 
-
-            }
-        });
-
-        rbBritishOdd.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent click)
-            {
-                if(rbBritishOdd.isSelected())
-                {
-                    System.out.println("Kawa z mlekiem");;
-                }
-
-
-            }
-        });
-
-
-
+    public JRadioButton getRbDecimalOdd()
+    {
+        return rbDecimalOdd;
     }
 }
 

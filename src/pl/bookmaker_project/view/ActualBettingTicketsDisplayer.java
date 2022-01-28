@@ -14,7 +14,8 @@ public class ActualBettingTicketsDisplayer extends JPanel
     private JTable actualTicketsTable;
 
 
-    public ActualBettingTicketsDisplayer(MenuController menuController) {
+    public ActualBettingTicketsDisplayer(MenuController menuController)
+    {
         super();
         this.menuController = menuController;
 
@@ -26,11 +27,11 @@ public class ActualBettingTicketsDisplayer extends JPanel
 
         for (int i = 0; i < menuController.getActualBettingTickets().size(); i++)
         {
-            Vector<?> vector = new Vector<>(Arrays.asList(menuController.getActualBettingTickets().get(i).getNumber(), menuController.getActualBettingTickets().get(i).getBettingTicketType(), menuController.getActualBettingTickets().get(i).getCreationDate(), menuController.getActualBettingTickets().get(i).getBets().size()));
+            Vector<?> vector = new Vector<>(Arrays.asList(menuController.getActualBettingTickets().get(i).getNumber(), menuController.getActualBettingTickets().get(i).getBettingTicketType(), menuController.dateFormatter(menuController.getActualBettingTickets().get(i).getCreationDate()), menuController.getActualBettingTickets().get(i).getBets().size(), menuController.getActualBettingTickets().get(i).getStake(),menuController.getActualBettingTickets().get(i).getTotalOdd()));
             ticketData.add(vector);
         }
 
-        Vector<String> columnNames = new Vector<>(Arrays.asList("Ticket Number", "Ticket Type", "Creation Date", "Bets quantity"));
+        Vector<String> columnNames = new Vector<>(Arrays.asList("Ticket Number", "Ticket Type", "Creation Date", "Bets quantity" , "Stake", "Total Odd"));
 
 
         actualTicketsTable = new JTable(ticketData, columnNames) {
@@ -49,7 +50,8 @@ public class ActualBettingTicketsDisplayer extends JPanel
                     c.setBackground(Color.LIGHT_GRAY);
                 }
 
-                if (isCellSelected(ticketData, columnNames)) {
+                if (isCellSelected(ticketData, columnNames))
+                {
                     c.setBackground(Color.GREEN);
                 }
 
@@ -82,8 +84,5 @@ public class ActualBettingTicketsDisplayer extends JPanel
         this.setBorder(BorderFactory.createLineBorder(Color.black));
 
     }
-
-
-
 
 }

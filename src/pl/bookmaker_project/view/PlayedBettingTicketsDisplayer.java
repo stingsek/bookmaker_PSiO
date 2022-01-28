@@ -11,14 +11,14 @@ import java.util.Vector;
 public class PlayedBettingTicketsDisplayer extends JPanel
 {
     private MenuController menuController;
-    private JTable playedTicketsTable;
+    private final JTable playedTicketsTable;
 
     public PlayedBettingTicketsDisplayer(MenuController menuController)
     {
         super();
         this.menuController = menuController;
 
-        setBackground(new Color(100,200,106));
+        setBackground(new Color(255, 183, 0));
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -27,11 +27,11 @@ public class PlayedBettingTicketsDisplayer extends JPanel
 
         for (int i = 0; i < menuController.getPlayedBettingTickets().size(); i++)
         {
-            Vector<?> vector = new Vector<>(Arrays.asList(menuController.getActualBettingTickets().get(i).getNumber(),menuController.getActualBettingTickets().get(i).getBettingTicketType(),menuController.getActualBettingTickets().get(i).getCreationDate(),menuController.getActualBettingTickets().get(i).getBets().size(),menuController.getActualBettingTickets().get(i).getBettingTicketStatus(),menuController.getActualBettingTickets().get(i).getPrize()));
+            Vector<?> vector = new Vector<>(Arrays.asList(menuController.getPlayedBettingTickets().get(i).getNumber(),menuController.getPlayedBettingTickets().get(i).getBettingTicketType(),menuController.dateFormatter(menuController.getPlayedBettingTickets().get(i).getCreationDate()),menuController.getPlayedBettingTickets().get(i).getBets().size(),menuController.getPlayedBettingTickets().get(i).getBettingTicketStatus(),menuController.getPlayedBettingTickets().get(i).getPrize(),menuController.getPlayedBettingTickets().get(i).getStake(),menuController.getPlayedBettingTickets().get(i).getTotalOdd()));
             ticketData.add(vector);
         }
 
-        Vector<String> columnNames = new Vector<>(Arrays.asList("Ticket Number", "Ticket Type", "Creation Date","Bets quantity","Ticket Status","Prize"));
+        Vector<String> columnNames = new Vector<>(Arrays.asList("Ticket Number", "Ticket Type", "Creation Date","Bets quantity","Ticket Status","Prize", "Stake", "Total Odd"));
 
 
         playedTicketsTable = new JTable(ticketData,columnNames)
@@ -63,33 +63,21 @@ public class PlayedBettingTicketsDisplayer extends JPanel
                 return c;
 
             }
-
-
-
         };
-
-
 
 
        playedTicketsTable.setPreferredScrollableViewportSize(new Dimension(700, 150));
        playedTicketsTable.setFillsViewportHeight(true);
        playedTicketsTable.getTableHeader().setReorderingAllowed(false);
        playedTicketsTable.setFont(new Font("Monospaced",Font.BOLD,15));
-
        playedTicketsTable.setRowHeight(30);
-
-
 
         JScrollPane jScrollPane = new JScrollPane(playedTicketsTable);
         jScrollPane.setPreferredSize(new Dimension(600,400));
 
-
         this.add(jScrollPane,BorderLayout.CENTER);
-
 
         this.setBorder(BorderFactory.createLineBorder(Color.black));
 
-
     }
-
 }
