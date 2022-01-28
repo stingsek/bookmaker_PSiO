@@ -2,5 +2,5 @@ package pl.bookmaker_project.model;
 
 public class Tax
 {
-    public static final double taxValue = 0.88;
+    public static final double TAX_VALUE = 0.88;
 }

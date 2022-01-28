@@ -1,23 +1,38 @@
 package pl.bookmaker_project.model;
 
-public class Bet
-{
-    private EventToBet eventToBet;
-    private double stake;
-    private PossibleResult possibleResult;
+import java.io.Serial;
+import java.io.Serializable;
 
-    public Bet(EventToBet eventToBet, double stake, PossibleResult possibleResult)
+public class Bet implements Serializable
+{
+    @Serial
+    private static final long serialVersionUID = 3982716114649589033L;
+    private final EventToBet eventToBet;
+    private final PossibleResult possibleResult;
+
+
+    public Bet(EventToBet eventToBet, PossibleResult possibleResult)
     {
         this.eventToBet = eventToBet;
-        this.stake = stake;
         this.possibleResult = possibleResult;
     }
+
 
     public String toString()
     {
         return eventToBet.getParticipantA() + " - " + eventToBet.getParticipantB() + "/" + eventToBet.dateFormatter(eventToBet.getDate()) +
-                "/" +  stake + "/" + possibleResult + "\n";
-
+                "/" +  possibleResult + "\n";
     }
 
+
+    public EventToBet getEventToBet()
+    {
+        return eventToBet;
+    }
+
+
+    public PossibleResult getPossibleResult()
+    {
+        return possibleResult;
+    }
 }

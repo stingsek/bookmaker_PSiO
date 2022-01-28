@@ -1,17 +1,24 @@
 package pl.bookmaker_project.model;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class EventToBet
+public class EventToBet implements Serializable
 {
-    private Date date;
-    private String participantA;
-    private String participantB;
-    private SportType sportType;
+
+    @Serial
+    private static final long serialVersionUID = 1314078320455545535L;
+    private final Date date;
+    private final String participantA;
+    private final String participantB;
+    private final SportType sportType;
     private double oddA;
     private double oddB;
     private Integer result;
+
+
 
     public EventToBet(Date date, String participantA, String participantB, SportType sportType, double oddA, double oddB, Integer result) {
         this.date = date;
@@ -27,55 +34,36 @@ public class EventToBet
     @Override
     public String toString()
     {
-        if (result == null)
         {
             return participantA + " - " +
                     participantB + "    " +
                     dateFormatter(date) + "    " +
                     sportType + "   " +
-                    oddA + "    " +
-                    oddB
-                    ;
-        } else
-        {
-            return participantA + " - " +
-                    participantB + "    " +
-                    dateFormatter(date) + "    " +
-                    sportType + "   " +
-                    oddA + "    " +
-                    oddB + "    " +
-                    result
+                    "1 ODD: " + oddA + "    " +
+                    "2 ODD: " + oddB
                     ;
         }
-
-
     }
+
 
     public String toStringWithoutOdds()
     {
-        if (result == null)
         {
             return participantA + " - " +
                     participantB + "    " +
                     dateFormatter(date) + "    " +
                     sportType
                     ;
-        } else
-        {
-            return participantA + " - " +
-                    participantB + "    " +
-                    dateFormatter(date) + "    " +
-                    sportType + "    " +
-                    result
-                    ;
         }
 
     }
+
 
     public double getDrawOdd()
     {
         return 0;
     }
+
 
     public String dateFormatter(Date date)
     {
@@ -83,57 +71,41 @@ public class EventToBet
         return formatter.format(date);
     }
 
+
     public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     public String getParticipantA() {
         return participantA;
     }
 
-    public void setParticipantA(String participantA) {
-        this.participantA = participantA;
-    }
 
     public String getParticipantB() {
         return participantB;
     }
 
-    public void setParticipantB(String participantB) {
-        this.participantB = participantB;
-    }
 
     public SportType getSportType() {
         return sportType;
     }
 
-    public void setSportType(SportType sportType) {
-        this.sportType = sportType;
-    }
 
     public double getOddA() {
         return oddA;
     }
 
-    public void setOddA(double oddA) {
-        this.oddA = oddA;
-    }
 
     public double getOddB() {
         return oddB;
     }
 
-    public void setOddB(double oddB) {
-        this.oddB = oddB;
-    }
 
     public Integer getResult() {
         return result;
     }
+
 
     public void setResult(Integer result) {
         this.result = result;

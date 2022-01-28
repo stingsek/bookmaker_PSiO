@@ -3,8 +3,8 @@ package pl.bookmaker_project.oddStrategy;
 public class BritishOdd implements Odd
 {
     @Override
-    public void displayOdds()
+    public double convertOdd(double odd)
     {
-
+       return odd - 1;
     }
 }
